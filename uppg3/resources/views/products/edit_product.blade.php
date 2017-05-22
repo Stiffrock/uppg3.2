@@ -2,9 +2,9 @@
 
 @section('content')
 
-<h1>Add product</h1>
-
-<form action="/products" method="post">
+<h1>Edit product</h1>
+<form action="/products/{{$product->id}}" method="post">
+  {{method_field('PUT')}}
   {{ csrf_field() }}
   <div class="form-group">
     <label for="title">Title</label>
@@ -31,9 +31,6 @@
     <label for="Image">Store</label>
     <input type="text" class="form-control" id="store" name="store" placeholder="Store ID...">
   </div>
-  <input type="submit" value="Save product" class="btn btn-success">
-
+  <input type="submit" value="Edit product" class="btn btn-success">
 </form>
-
-
 @endsection
