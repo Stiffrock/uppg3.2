@@ -10,6 +10,19 @@
 </li>
 <img src="{{ $product->image }}">
 
+@if (!Auth::guest())
+<form action="{{ $product->id }}" method="post" style="float:right">
+   {{ method_field('DELETE') }}
+   {{ csrf_field() }}
+   <input type="submit" value="Remove product" class="btn btn-danger" style="float:right">
+ </form>
+@endif
+ @if (!Auth::guest())
+ <form action="{{ $product->id }}/edit" method="get" style="float:right">
+    {{ csrf_field() }}
+    <input type="submit" value="Edit product" class="btn btn-danger" style="float:right">
+  </form>
+@endif
 
 @foreach($reviews as $review)
 @if($review->product_id == $product->id)
@@ -40,8 +53,8 @@
     <input type="text" class="form-control" id="comment" name="comment" placeholder="Comment...">
   </div>
   <input type = "hidden" name ="id" value ='<?php echo "$product->id";?>' />
-  <input type="submit" value="Spara film" class="btn btn-success">
+  <input type="submit" value="Add review" class="btn btn-success">
 </form>
 
-  @endif
+@endif
 @endsection
